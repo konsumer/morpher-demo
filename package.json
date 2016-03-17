@@ -12,7 +12,6 @@
   "author": "David Konsumer <konsumer@jetboystudio.com>",
   "license": "MIT",
   "dependencies": {
-    "browserify-shim": "^3.8.12",
     "morpher-js": "^1.0.0",
     "react": "^0.14.3",
     "react-dom": "^0.14.7"
