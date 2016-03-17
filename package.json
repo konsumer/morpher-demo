@@ -1,0 +1,52 @@
+{
+  "name": "morpher-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "browserify src/index.js | uglifyjs -cm > webroot/bundle.js",
+    "start": "budo src/index.js:bundle.js --pushstate --live -v -t errorify --dir webroot ",
+    "deploy": "gh-pages-deploy",
+    "clean-source": "rimraf README.md src webroot package.json"
+  },
+  "author": "David Konsumer <konsumer@jetboystudio.com>",
+  "license": "MIT",
+  "dependencies": {
+    "morpher-js": "github:konsumer/morpher-js#npm-stuff",
+    "react": "^0.14.3"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "babelify": "^7.2.0",
+    "browserify": "^12.0.1",
+    "budo": "^7.0.0",
+    "errorify": "^0.3.1",
+    "gh-pages-deploy": "konsumer/gh-pages-deploy",
+    "rimraf": "^2.4.4",
+    "uglifyjs": "^2.4.10"
+  },
+  "gh-pages-deploy": {
+    "staticpath": "webroot",
+    "prep": [
+      "build"
+    ],
+    "post": [
+      "clean-source"
+    ],
+    "noprompt": true
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "es2015",
+            "react"
+          ]
+        }
+      ]
+    ]
+  }
+}
